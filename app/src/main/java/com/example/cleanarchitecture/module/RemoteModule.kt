@@ -34,10 +34,14 @@ val remoteModule = module {
         GsonConverterFactory.create()
     }
 
+    // For RxJava2CallAdapterFactory instance
+    single { RxJava2CallAdapterFactory.create() }
+
     // For Retrofit instance
     single {
         Retrofit
             .Builder()
+            .baseUrl("https://zenquotes.io")
             .addCallAdapterFactory(get<RxJava2CallAdapterFactory>())
             .client(get<OkHttpClient>())
             .addConverterFactory(get<GsonConverterFactory>())

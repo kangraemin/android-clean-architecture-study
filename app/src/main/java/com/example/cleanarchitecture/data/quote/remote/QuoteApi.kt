@@ -4,6 +4,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface QuoteApi {
-    @GET("https://zenquotes.io/api/random")
-    fun getQuoteItem() : Single<RemoteQuoteItem>
+    @GET("/api/random")
+    fun getQuoteItem() : Single<List<RemoteQuoteItem>>
 }

@@ -12,6 +12,6 @@ class RemoteQuoteDataSourceImpl(
         return quoteApi
             .getQuoteItem()
             .subscribeOn(Schedulers.io())
-            .map { remoteQuoteItemToQuoteItem(it) }
+            .map { remoteQuoteItemToQuoteItem(it.first()) }
     }
 }

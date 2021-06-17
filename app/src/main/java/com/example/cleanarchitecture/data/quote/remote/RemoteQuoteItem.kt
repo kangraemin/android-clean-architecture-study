@@ -1,7 +1,7 @@
 package com.example.cleanarchitecture.data.quote.remote
 
 data class RemoteQuoteItem(
-    val author: String, // Author
-    val htmlQuoteText: String, // pre-formatted HTML
-    val quote: String // quote text
+    val a: String, // Author
+    val h: String, // pre-formatted HTML
+    val q: String // quote text
 )
