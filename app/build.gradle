@@ -57,4 +57,13 @@ dependencies {
     implementation "org.koin:koin-core:2.1.5"
     // Koin viewModel
     implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    // retrofit-rxJava
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
+    // gson converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.14.7'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.2'
 }
