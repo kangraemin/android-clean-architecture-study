@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CleanArchitecture</string>
+    <string name="main_animal_image_description">animal image</string>
 </resources>
