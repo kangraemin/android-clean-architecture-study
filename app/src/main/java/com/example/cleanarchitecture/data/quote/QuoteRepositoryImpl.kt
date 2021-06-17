@@ -6,7 +6,7 @@ import io.reactivex.Single
 class QuoteRepositoryImpl(
     private val remoteQuoteDataSource: RemoteQuoteDataSource
 ) : QuoteRepository {
-    override fun getQuote(): Single<QuoteItem> {
+    override fun getRandomQuote(): Single<QuoteItem> {
         return remoteQuoteDataSource.getRandomQuote()
     }
 }
