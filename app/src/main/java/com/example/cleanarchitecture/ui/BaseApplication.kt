@@ -1,8 +1,7 @@
 package com.example.cleanarchitecture.ui
 
 import android.app.Application
-import com.example.cleanarchitecture.module.remoteModule
-import com.example.cleanarchitecture.module.viewModule
+import com.example.cleanarchitecture.module.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -12,7 +11,7 @@ class BaseApplication : Application() {
         startKoin {
             androidContext(this@BaseApplication)
             modules(
-                remoteModule, viewModule
+                remoteModule, viewModule, localModule, repositoryModule, utilModule
             )
         }
     }

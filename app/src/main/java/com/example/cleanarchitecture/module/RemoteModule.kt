@@ -60,9 +60,6 @@ val remoteModule = module {
     // For RemoteQuoteDataSource instance
     single<RemoteQuoteDataSource> { RemoteQuoteDataSourceImpl(get()) }
 
-    // For QuoteRepository instance
-    single<QuoteRepository> { QuoteRepositoryImpl(get()) }
-
     // For CatImageApi instance
     single<CatImageApi> { get<Retrofit>().create(CatImageApi::class.java) }
 
