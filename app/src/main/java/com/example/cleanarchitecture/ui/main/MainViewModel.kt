@@ -3,6 +3,8 @@ package com.example.cleanarchitecture.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cleanarchitecture.base.BaseViewModel
+import com.example.cleanarchitecture.data.animal.CatImageItem
+import com.example.cleanarchitecture.data.animal.CatImageRepository
 import com.example.cleanarchitecture.data.quote.QuoteItem
 import com.example.cleanarchitecture.data.quote.QuoteRepository
 import io.reactivex.Single
@@ -12,11 +14,15 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.PublishSubject
 
 class MainViewModel(
-    quoteRepository: QuoteRepository
+    quoteRepository: QuoteRepository,
+    catImageRepository: CatImageRepository
 ) : BaseViewModel() {
 
     private val _randomQuoteItem: MutableLiveData<QuoteItem> = MutableLiveData()
     val randomQuoteItem: LiveData<QuoteItem> = _randomQuoteItem
+
+    private val _randomCatImageItem: MutableLiveData<CatImageItem> = MutableLiveData()
+    val randomCatImageItem: LiveData<CatImageItem> = _randomCatImageItem
 
     private val refreshSubject = PublishSubject.create<Unit>()
     private val _isRefreshing: MutableLiveData<Boolean> = MutableLiveData()
@@ -28,11 +34,21 @@ class MainViewModel(
             .map { ResponseToGetRandomQuote(randomQuote = it) }
             .onErrorReturn { ResponseToGetRandomQuote(throwable = it) }
 
+        val getRandomCatImage = catImageRepository
+            .getRandomCatImage()
+            .map { ResponseToGetRandomCatImage(catImageItem = it) }
+            .onErrorReturn { ResponseToGetRandomCatImage(throwable = it) }
+
         val getAllDataInMain = Single
             .zip(
                 getRandomQuote,
-                Single.just(Unit),
-                BiFunction { t1: ResponseToGetRandomQuote, t2: Unit -> return@BiFunction Pair(t1, t2) }
+                getRandomCatImage,
+                BiFunction { t1: ResponseToGetRandomQuote, t2: ResponseToGetRandomCatImage ->
+                    return@BiFunction Pair(
+                        t1,
+                        t2
+                    )
+                }
             )
 
         val refreshing = refreshSubject
@@ -57,6 +73,21 @@ class MainViewModel(
                 }
             }, { it.printStackTrace() })
             .addTo(compositeDisposable)
+
+        refreshing
+            .filter { it.isOnNext }
+            .map { it.value }
+            .map { it.second }
+            .subscribe({
+                if (it.throwable != null) {
+                    it.throwable.printStackTrace()
+                } else {
+                    it.catImageItem?.let {
+                        _randomCatImageItem.value = it
+                    }
+                }
+            }, { it.printStackTrace() })
+            .addTo(compositeDisposable)
     }
 
     fun onRefresh() {
@@ -65,6 +96,11 @@ class MainViewModel(
 
     private data class ResponseToGetRandomQuote(
         val randomQuote: QuoteItem? = null,
+        val throwable: Throwable? = null
+    )
+
+    private data class ResponseToGetRandomCatImage(
+        val catImageItem: CatImageItem? = null,
         val throwable: Throwable? = null
     )
 }

@@ -1,5 +1,10 @@
 package com.example.cleanarchitecture.module
 
+import com.example.cleanarchitecture.data.animal.CatImageRepository
+import com.example.cleanarchitecture.data.animal.CatImageRepositoryImpl
+import com.example.cleanarchitecture.data.animal.remote.CatImageApi
+import com.example.cleanarchitecture.data.animal.remote.RemoteCatImageDataSource
+import com.example.cleanarchitecture.data.animal.remote.RemoteCatImageDataSourceImpl
 import com.example.cleanarchitecture.data.quote.QuoteRepository
 import com.example.cleanarchitecture.data.quote.QuoteRepositoryImpl
 import com.example.cleanarchitecture.data.quote.remote.QuoteApi
@@ -11,6 +16,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 val remoteModule = module {
 
@@ -49,11 +55,20 @@ val remoteModule = module {
     }
 
     // For QuoteApi instance
-    single { get<Retrofit>().create(QuoteApi::class.java) }
+    single<QuoteApi> { get<Retrofit>().create(QuoteApi::class.java) }
 
     // For RemoteQuoteDataSource instance
     single<RemoteQuoteDataSource> { RemoteQuoteDataSourceImpl(get()) }
 
     // For QuoteRepository instance
     single<QuoteRepository> { QuoteRepositoryImpl(get()) }
+
+    // For CatImageApi instance
+    single<CatImageApi> { get<Retrofit>().create(CatImageApi::class.java) }
+
+    // For RemoteCatImageDataSource instance
+    single<RemoteCatImageDataSource> { RemoteCatImageDataSourceImpl(get()) }
+
+    // For CatImageRepository instance
+    single<CatImageRepository> { CatImageRepositoryImpl(get()) }
 }
