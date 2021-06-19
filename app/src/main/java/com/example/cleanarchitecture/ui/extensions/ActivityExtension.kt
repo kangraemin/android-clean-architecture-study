@@ -8,9 +8,8 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 
-fun AppCompatActivity.hideNavigationUI() {
+fun Activity.hideNavigationUI() {
     // https://stackoverflow.com/a/64828067
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         window.setDecorFitsSystemWindows(false)
