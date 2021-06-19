@@ -36,8 +36,8 @@ class MainViewModel(
             )
 
         val refreshing = refreshSubject
-            .startWith(Unit)
             .doOnNext { _isRefreshing.value = true }
+            .startWith(Unit)
             .flatMapSingle { getAllDataInMain }
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { _isRefreshing.value = false }
@@ -47,7 +47,6 @@ class MainViewModel(
             .filter { it.isOnNext }
             .map { it.value }
             .map { it.first }
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if (it.throwable != null) {
                     it.throwable.printStackTrace()
