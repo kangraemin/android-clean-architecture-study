@@ -2,6 +2,8 @@ package com.example.cleanarchitecture.module
 
 import androidx.room.Room
 import com.example.cleanarchitecture.data.AppDatabase
+import com.example.cleanarchitecture.data.animal.local.LocalCatImageDataSource
+import com.example.cleanarchitecture.data.animal.local.LocalCatImageDataSourceImpl
 import com.example.cleanarchitecture.data.quote.local.LocalQuoteDataSource
 import com.example.cleanarchitecture.data.quote.local.LocalQuoteDataSourceImpl
 import com.example.cleanarchitecture.data.quote.local.LocalQuoteItem
@@ -23,4 +25,10 @@ val localModule = module {
 
     // For LocalQuoteDataSource instance
     single<LocalQuoteDataSource> { LocalQuoteDataSourceImpl(get()) }
+
+    // For LocalCatImageDao instance
+    single { get<AppDatabase>().catImageDao() }
+
+    // For LocalCatImageDataSource instance
+    single<LocalCatImageDataSource> { LocalCatImageDataSourceImpl(get()) }
 }

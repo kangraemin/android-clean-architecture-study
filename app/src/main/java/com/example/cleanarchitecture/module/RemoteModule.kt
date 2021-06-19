@@ -67,5 +67,5 @@ val remoteModule = module {
     single<RemoteCatImageDataSource> { RemoteCatImageDataSourceImpl(get()) }
 
     // For CatImageRepository instance
-    single<CatImageRepository> { CatImageRepositoryImpl(get()) }
+    single<CatImageRepository> { CatImageRepositoryImpl(get(), get(), get()) }
 }
