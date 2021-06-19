@@ -58,6 +58,7 @@ class MainViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { _isRefreshing.value = false }
             .materialize()
+            .share()
 
         refreshing
             .filter { it.isOnNext }
