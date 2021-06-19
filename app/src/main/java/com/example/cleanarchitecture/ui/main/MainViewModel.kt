@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.cleanarchitecture.base.BaseViewModel
 import com.example.cleanarchitecture.data.quote.QuoteItem
 import com.example.cleanarchitecture.data.quote.QuoteRepository
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.PublishSubject
 
@@ -13,19 +15,38 @@ class MainViewModel(
     quoteRepository: QuoteRepository
 ) : BaseViewModel() {
 
-    private val getRandomQuoteSubject = PublishSubject.create<Unit>()
     private val _randomQuoteItem: MutableLiveData<QuoteItem> = MutableLiveData()
     val randomQuoteItem: LiveData<QuoteItem> = _randomQuoteItem
 
+    private val refreshSubject = PublishSubject.create<Unit>()
+    private val _isRefreshing: MutableLiveData<Boolean> = MutableLiveData()
+    val isRefreshing: LiveData<Boolean> = _isRefreshing
+
     init {
-        getRandomQuoteSubject
+        val getRandomQuote = quoteRepository
+            .getRandomQuote()
+            .map { ResponseToGetRandomQuote(randomQuote = it) }
+            .onErrorReturn { ResponseToGetRandomQuote(throwable = it) }
+
+        val getAllDataInMain = Single
+            .zip(
+                getRandomQuote,
+                Single.just(Unit),
+                BiFunction { t1: ResponseToGetRandomQuote, t2: Unit -> return@BiFunction Pair(t1, t2) }
+            )
+
+        val refreshing = refreshSubject
             .startWith(Unit)
-            .switchMapSingle {
-                quoteRepository
-                    .getRandomQuote()
-                    .map { ResponseToGetRandomQuote(randomQuote = it) }
-                    .onErrorReturn { ResponseToGetRandomQuote(throwable = it) }
-            }
+            .doOnNext { _isRefreshing.value = true }
+            .flatMapSingle { getAllDataInMain }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { _isRefreshing.value = false }
+            .materialize()
+
+        refreshing
+            .filter { it.isOnNext }
+            .map { it.value }
+            .map { it.first }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if (it.throwable != null) {
@@ -37,6 +58,10 @@ class MainViewModel(
                 }
             }, { it.printStackTrace() })
             .addTo(compositeDisposable)
+    }
+
+    fun onRefresh() {
+        refreshSubject.onNext(Unit)
     }
 
     private data class ResponseToGetRandomQuote(
