@@ -29,7 +29,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideNavigationUI()
         // ShakeDetector initialization
         shakeDetector.setOnShakeListener(object : OnShakeListener {
             override fun onShake() {
@@ -40,6 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
 
     override fun onResume() {
         super.onResume()
+        hideNavigationUI()
         // Add the following line to register the Session Manager Listener onResume
         sensorManager.registerListener(
             shakeDetector,
