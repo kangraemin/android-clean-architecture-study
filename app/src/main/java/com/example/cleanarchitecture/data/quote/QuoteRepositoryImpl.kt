@@ -2,6 +2,7 @@ package com.example.cleanarchitecture.data.quote
 
 import com.example.cleanarchitecture.data.quote.local.LocalQuoteDataSource
 import com.example.cleanarchitecture.data.quote.remote.RemoteQuoteDataSource
+import com.example.cleanarchitecture.exception.TooManyRequest
 import com.example.cleanarchitecture.util.NetworkUtil
 import io.reactivex.Single
 
@@ -24,6 +25,13 @@ class QuoteRepositoryImpl(
                                 .deleteAllQuotes()
                                 .andThen(localQuoteDataSource.insertQuote(quoteItem))
                                 .toSingleDefault(quoteItem)
+                        }
+                        .onErrorResumeNext {
+                            if (it is TooManyRequest) {
+                                return@onErrorResumeNext localQuoteDataSource
+                                    .getQuote()
+                            }
+                            throw it
                         }
                 }
             }
