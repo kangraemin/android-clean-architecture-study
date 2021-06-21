@@ -12,7 +12,7 @@ fun ImageView.setImage(imageUrl: String?) {
             .with(this)
             .load(it)
             .centerCrop()
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(this)
     }
 }
