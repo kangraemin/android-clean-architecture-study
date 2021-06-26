@@ -22,4 +22,4 @@
 
 ## 💡 1주차, 클린아키텍처 적용 전의 대략적인 프로젝트 의존성 MAP
 
-![DefaultDiagram](https://user-images.githubusercontent.com/22047559/123498603-fda18d80-d66b-11eb-9c6a-cb120fe08c27.png)
+![DefaultDiagram](https://user-images.githubusercontent.com/22047559/123498998-84f00080-d66e-11eb-8983-f6a7ea4d9584.png)
