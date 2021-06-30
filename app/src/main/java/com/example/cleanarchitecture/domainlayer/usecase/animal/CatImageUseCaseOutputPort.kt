@@ -1,0 +1,6 @@
+package com.example.cleanarchitecture.domainlayer.usecase.animal
+
+import com.example.cleanarchitecture.domainlayer.base.GetDataUseCaseOutputPort
+import com.example.cleanarchitecture.domainlayer.responsemodel.CatImageResponseModel
+
+interface CatImageUseCaseOutputPort: GetDataUseCaseOutputPort<CatImageResponseModel>
