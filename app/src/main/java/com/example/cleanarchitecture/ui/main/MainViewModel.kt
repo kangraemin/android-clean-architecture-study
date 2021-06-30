@@ -3,10 +3,10 @@ package com.example.cleanarchitecture.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cleanarchitecture.base.BaseViewModel
-import com.example.cleanarchitecture.data.animal.CatImageItem
-import com.example.cleanarchitecture.data.animal.CatImageRepository
-import com.example.cleanarchitecture.data.quote.QuoteItem
-import com.example.cleanarchitecture.data.quote.QuoteRepository
+import com.example.cleanarchitecture.datalayer.entity.CatImageItem
+import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
+import com.example.cleanarchitecture.datalayer.entity.QuoteItem
+import com.example.cleanarchitecture.datalayer.datagateway.quote.QuoteGateway
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
@@ -14,8 +14,8 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.PublishSubject
 
 class MainViewModel(
-    quoteRepository: QuoteRepository,
-    catImageRepository: CatImageRepository
+    quoteGateway: QuoteGateway,
+    catImageGateway: CatImageGateway
 ) : BaseViewModel() {
 
     private val _randomQuoteItem: MutableLiveData<QuoteItem> = MutableLiveData()
@@ -29,12 +29,12 @@ class MainViewModel(
     val isRefreshing: LiveData<Boolean> = _isRefreshing
 
     init {
-        val getRandomQuote = quoteRepository
+        val getRandomQuote = quoteGateway
             .getRandomQuote()
             .map { ResponseToGetRandomQuote(randomQuote = it) }
             .onErrorReturn { ResponseToGetRandomQuote(throwable = it) }
 
-        val getRandomCatImage = catImageRepository
+        val getRandomCatImage = catImageGateway
             .getRandomCatImage()
             .map { ResponseToGetRandomCatImage(catImageItem = it) }
             .onErrorReturn { ResponseToGetRandomCatImage(throwable = it) }
