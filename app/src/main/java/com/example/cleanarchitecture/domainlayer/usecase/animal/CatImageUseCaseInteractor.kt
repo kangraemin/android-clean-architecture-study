@@ -2,7 +2,7 @@ package com.example.cleanarchitecture.domainlayer.usecase.animal
 
 import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
 import com.example.cleanarchitecture.domainlayer.base.GetDataInteractor
-import com.example.cleanarchitecture.domainlayer.mapper.AnimalMapper.catImageEntityToResponseModel
+import com.example.cleanarchitecture.domainlayer.mapper.AnimalMapper.entityToResponseModel
 import com.example.cleanarchitecture.domainlayer.requestmodel.CatImageRequestModel
 
 class CatImageUseCaseInteractor(
@@ -13,7 +13,7 @@ class CatImageUseCaseInteractor(
         catImageUseCaseOutputPort.getData(
             catImageGateway
                 .getRandomCatImage()
-                .map { catImageEntityToResponseModel(it) }
+                .map { entityToResponseModel(it) }
         )
     }
 }

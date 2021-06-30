@@ -6,7 +6,7 @@ import com.example.cleanarchitecture.domainlayer.responsemodel.CatImageResponseM
 
 
 object AnimalMapper : GetDataMapper<CatImageItem, CatImageResponseModel> {
-    override fun catImageEntityToResponseModel(entity: CatImageItem): CatImageResponseModel {
+    override fun entityToResponseModel(entity: CatImageItem): CatImageResponseModel {
         return CatImageResponseModel(catImageUrl = entity.imageUrl)
     }
 }
