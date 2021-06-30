@@ -1,8 +1,8 @@
-package com.example.cleanarchitecture.ui.main
+package com.example.cleanarchitecture.presentationlayer.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.cleanarchitecture.base.BaseViewModel
+import com.example.cleanarchitecture.presentationlayer.base.BaseViewModel
 import com.example.cleanarchitecture.datalayer.entity.CatImageItem
 import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
 import com.example.cleanarchitecture.datalayer.entity.QuoteItem

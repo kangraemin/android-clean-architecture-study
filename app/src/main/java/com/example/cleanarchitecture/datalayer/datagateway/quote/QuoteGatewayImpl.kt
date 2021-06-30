@@ -4,7 +4,7 @@ import com.example.cleanarchitecture.datalayer.entity.QuoteItem
 import com.example.cleanarchitecture.datalayer.local.quote.LocalQuoteDataSource
 import com.example.cleanarchitecture.datalayer.remote.quote.RemoteQuoteDataSource
 import com.example.cleanarchitecture.datalayer.exception.TooManyRequest
-import com.example.cleanarchitecture.util.NetworkUtil
+import com.example.cleanarchitecture.presentationlayer.util.NetworkUtil
 import io.reactivex.Single
 
 class QuoteGatewayImpl(

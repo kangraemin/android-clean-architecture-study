@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.ui.extensions
+package com.example.cleanarchitecture.presentationlayer.ui.extensions
 
 import android.app.Activity
 import android.graphics.Color

@@ -3,7 +3,7 @@ package com.example.cleanarchitecture.datalayer.datagateway.animal
 import com.example.cleanarchitecture.datalayer.entity.CatImageItem
 import com.example.cleanarchitecture.datalayer.local.animal.LocalCatImageDataSource
 import com.example.cleanarchitecture.datalayer.remote.animal.RemoteCatImageDataSource
-import com.example.cleanarchitecture.util.NetworkUtil
+import com.example.cleanarchitecture.presentationlayer.util.NetworkUtil
 import io.reactivex.Single
 
 class CatImageGatewayImpl (

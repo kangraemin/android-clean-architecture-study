@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.util
+package com.example.cleanarchitecture.presentationlayer.util
 
 import android.content.Context
 import android.net.ConnectivityManager

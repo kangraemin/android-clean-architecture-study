@@ -1,10 +1,10 @@
-package com.example.cleanarchitecture.ui
+package com.example.cleanarchitecture.presentationlayer.ui
 
 import android.app.Application
 import com.example.cleanarchitecture.datalayer.di.localModule
 import com.example.cleanarchitecture.datalayer.di.remoteModule
 import com.example.cleanarchitecture.datalayer.di.repositoryModule
-import com.example.cleanarchitecture.module.*
+import com.example.cleanarchitecture.presentationlayer.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

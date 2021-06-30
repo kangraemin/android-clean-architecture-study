@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.ui.bindingadapter
+package com.example.cleanarchitecture.presentationlayer.ui.bindingadapter
 
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout

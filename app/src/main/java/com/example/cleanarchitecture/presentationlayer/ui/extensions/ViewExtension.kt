@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.ui.extensions
+package com.example.cleanarchitecture.presentationlayer.ui.extensions
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

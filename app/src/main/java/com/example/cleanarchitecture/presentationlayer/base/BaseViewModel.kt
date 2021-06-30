@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.base
+package com.example.cleanarchitecture.presentationlayer.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

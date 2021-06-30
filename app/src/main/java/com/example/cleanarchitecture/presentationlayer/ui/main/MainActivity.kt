@@ -1,19 +1,19 @@
-package com.example.cleanarchitecture.ui.main
+package com.example.cleanarchitecture.presentationlayer.ui.main
 
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
 import com.example.cleanarchitecture.R
-import com.example.cleanarchitecture.base.BaseActivity
+import com.example.cleanarchitecture.presentationlayer.base.BaseActivity
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
-import com.example.cleanarchitecture.ui.extensions.hideNavigationUI
-import com.example.cleanarchitecture.ui.extensions.showLongToastMessage
-import com.example.cleanarchitecture.util.BitmapSaveUtils
-import com.example.cleanarchitecture.util.BitmapSaveUtils.PERMISSIONS_REQUEST_SAVE_PICTURE
-import com.example.cleanarchitecture.util.BitmapSaveUtils.saveImageForBackgroundOfView
-import com.example.cleanarchitecture.util.ShakeDetector
-import com.example.cleanarchitecture.util.ShakeDetector.OnShakeListener
+import com.example.cleanarchitecture.presentationlayer.ui.extensions.hideNavigationUI
+import com.example.cleanarchitecture.presentationlayer.ui.extensions.showLongToastMessage
+import com.example.cleanarchitecture.presentationlayer.util.BitmapSaveUtils
+import com.example.cleanarchitecture.presentationlayer.util.BitmapSaveUtils.PERMISSIONS_REQUEST_SAVE_PICTURE
+import com.example.cleanarchitecture.presentationlayer.util.BitmapSaveUtils.saveImageForBackgroundOfView
+import com.example.cleanarchitecture.presentationlayer.util.ShakeDetector
+import com.example.cleanarchitecture.presentationlayer.util.ShakeDetector.OnShakeListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

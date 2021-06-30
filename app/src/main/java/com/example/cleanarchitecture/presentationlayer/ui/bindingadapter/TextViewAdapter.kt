@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.ui.bindingadapter
+package com.example.cleanarchitecture.presentationlayer.ui.bindingadapter
 
 import android.os.Build
 import android.text.Html

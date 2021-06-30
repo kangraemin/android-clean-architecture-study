@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.base
+package com.example.cleanarchitecture.presentationlayer.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes

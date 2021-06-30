@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.util
+package com.example.cleanarchitecture.presentationlayer.util
 
 import android.Manifest
 import android.app.Activity
@@ -13,8 +13,8 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.cleanarchitecture.R
-import com.example.cleanarchitecture.ui.extensions.getBackgroundColor
-import com.example.cleanarchitecture.ui.extensions.getBitmapFromView
+import com.example.cleanarchitecture.presentationlayer.ui.extensions.getBackgroundColor
+import com.example.cleanarchitecture.presentationlayer.ui.extensions.getBitmapFromView
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.time.Instant

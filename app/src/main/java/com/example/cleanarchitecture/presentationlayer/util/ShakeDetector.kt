@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.util
+package com.example.cleanarchitecture.presentationlayer.util
 
 import android.hardware.Sensor
 import android.hardware.SensorEvent
