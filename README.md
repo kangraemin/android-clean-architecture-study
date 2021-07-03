@@ -19,6 +19,7 @@
 - RxBinding / RxKotlin
 - Retrofit using Rx
 - Room for localDB
+- Separate layer using mutimodule
 
 # 1주차, 클린아키텍처 적용 전 프로젝트 구축 및 프로젝트 의존성 MAP
 
