@@ -1,0 +1,7 @@
+package com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.quote
+
+import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.QuoteRequestModel
+import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.QuoteResponseModel
+import com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.base.GetDataInteractor
+
+interface QuoteUseCaseInteractor : GetDataInteractor<QuoteRequestModel, QuoteResponseModel>
