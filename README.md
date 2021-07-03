@@ -16,7 +16,7 @@
 - MVVM with databinding
 - Repository pattern ( Remote / Local )
 - Dependency injection ( Koin )
-- RxBinding / RxKotlin
+- RxKotlin / RxAndroid
 - Retrofit using Rx
 - Room for localDB
 - Separate layer using mutimodule
