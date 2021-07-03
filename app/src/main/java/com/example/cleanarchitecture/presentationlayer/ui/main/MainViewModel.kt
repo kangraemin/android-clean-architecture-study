@@ -2,11 +2,11 @@ package com.example.cleanarchitecture.presentationlayer.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.cleanarchitecture.domainlayer.requestmodel.EntireDataRequestModel
-import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
-import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.QuoteRequestModel
-import com.example.cleanarchitecture.domainlayer.responsemodel.EntireDataResponseModel
-import com.example.cleanarchitecture.domainlayer.usecase.user.UserUseCaseInteractor
+import com.example.domainlayer.requestmodel.EntireDataRequestModel
+import com.example.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
+import com.example.domainlayer.requestmodel.dataprovidor.QuoteRequestModel
+import com.example.domainlayer.responsemodel.EntireDataResponseModel
+import com.example.domainlayer.usecase.user.UserUseCaseInteractor
 import com.example.cleanarchitecture.presentationlayer.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo

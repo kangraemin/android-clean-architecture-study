@@ -1,7 +1,0 @@
-package com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.animal
-
-import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
-import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.CatImageResponseModel
-import com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.base.GetDataInteractor
-
-interface CatImageUseCaseInteractor : GetDataInteractor<CatImageRequestModel, CatImageResponseModel>
