@@ -1,3 +1,7 @@
 package com.example.cleanarchitecture.domainlayer.base
 
-interface GetDataInteractor<RQM : GetDataRequestModel> : GetDataUseCaseInputPort<RQM>
+import io.reactivex.Single
+
+interface GetDataInteractor<RQM : GetDataRequestModel, RPM : GetDataResponseModel> {
+    fun getData(requestModel: RQM): Single<RPM>
+}
