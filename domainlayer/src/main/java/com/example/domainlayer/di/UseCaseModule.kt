@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.domainlayer.di
+package com.example.domainlayer.di
 
 import com.example.domainlayer.usecase.dataprovidor.animal.CatImageUseCaseInteractor
 import com.example.domainlayer.usecase.dataprovidor.animal.CatImageUseCaseInteractorImpl
