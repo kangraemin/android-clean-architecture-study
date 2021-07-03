@@ -4,7 +4,9 @@ import android.app.Application
 import com.example.cleanarchitecture.datalayer.di.localModule
 import com.example.cleanarchitecture.datalayer.di.remoteModule
 import com.example.cleanarchitecture.datalayer.di.repositoryModule
-import com.example.cleanarchitecture.presentationlayer.di.*
+import com.example.cleanarchitecture.domainlayer.di.useCaseModule
+import com.example.cleanarchitecture.presentationlayer.di.utilModule
+import com.example.cleanarchitecture.presentationlayer.di.viewModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -14,9 +16,9 @@ class BaseApplication : Application() {
         startKoin {
             androidContext(this@BaseApplication)
             modules(
-                remoteModule, viewModule,
-                localModule,
-                repositoryModule, utilModule
+                remoteModule, localModule, repositoryModule,
+                useCaseModule,
+                utilModule, viewModule
             )
         }
     }

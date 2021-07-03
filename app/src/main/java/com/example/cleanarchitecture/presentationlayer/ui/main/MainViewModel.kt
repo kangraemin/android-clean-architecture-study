@@ -2,89 +2,58 @@ package com.example.cleanarchitecture.presentationlayer.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.cleanarchitecture.domainlayer.requestmodel.EntireDataRequestModel
+import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
+import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.QuoteRequestModel
+import com.example.cleanarchitecture.domainlayer.responsemodel.EntireDataResponseModel
+import com.example.cleanarchitecture.domainlayer.usecase.user.UserUseCaseInteractor
 import com.example.cleanarchitecture.presentationlayer.base.BaseViewModel
-import com.example.cleanarchitecture.datalayer.entity.CatImageItem
-import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
-import com.example.cleanarchitecture.datalayer.entity.QuoteItem
-import com.example.cleanarchitecture.datalayer.datagateway.quote.QuoteGateway
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.PublishSubject
 
 class MainViewModel(
-    quoteGateway: QuoteGateway,
-    catImageGateway: CatImageGateway
+    userUseCaseInteractor: UserUseCaseInteractor
 ) : BaseViewModel() {
 
-    private val _randomQuoteItem: MutableLiveData<QuoteItem> = MutableLiveData()
-    val randomQuoteItem: LiveData<QuoteItem> = _randomQuoteItem
+    private val _randomQuoteItem: MutableLiveData<String> = MutableLiveData()
+    val randomQuoteItem: LiveData<String> = _randomQuoteItem
 
-    private val _randomCatImageItem: MutableLiveData<CatImageItem> = MutableLiveData()
-    val randomCatImageItem: LiveData<CatImageItem> = _randomCatImageItem
+    private val _randomCatImageItem: MutableLiveData<String> = MutableLiveData()
+    val randomCatImageItem: LiveData<String> = _randomCatImageItem
 
     private val refreshSubject = PublishSubject.create<Unit>()
     private val _isRefreshing: MutableLiveData<Boolean> = MutableLiveData()
     val isRefreshing: LiveData<Boolean> = _isRefreshing
 
     init {
-        val getRandomQuote = quoteGateway
-            .getRandomQuote()
-            .map { ResponseToGetRandomQuote(randomQuote = it) }
-            .onErrorReturn { ResponseToGetRandomQuote(throwable = it) }
-
-        val getRandomCatImage = catImageGateway
-            .getRandomCatImage()
-            .map { ResponseToGetRandomCatImage(catImageItem = it) }
-            .onErrorReturn { ResponseToGetRandomCatImage(throwable = it) }
-
-        val getAllDataInMain = Single
-            .zip(
-                getRandomQuote,
-                getRandomCatImage,
-                BiFunction { t1: ResponseToGetRandomQuote, t2: ResponseToGetRandomCatImage ->
-                    return@BiFunction Pair(
-                        t1,
-                        t2
-                    )
-                }
-            )
-
         val refreshing = refreshSubject
             .doOnNext { _isRefreshing.value = true }
             .startWith(Unit)
-            .flatMapSingle { getAllDataInMain }
+            .flatMapSingle {
+                userUseCaseInteractor
+                    .getEntireData(
+                        EntireDataRequestModel(
+                            quoteRequestModel = QuoteRequestModel(Unit),
+                            catImageRequestModel = CatImageRequestModel(Unit)
+                        )
+                    )
+                    .map { ResponseToGetEntireData(it) }
+                    .onErrorReturn { ResponseToGetEntireData(throwable = it) }
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { _isRefreshing.value = false }
-            .materialize()
-            .share()
 
         refreshing
-            .filter { it.isOnNext }
-            .map { it.value }
-            .map { it.first }
-            .subscribe({
-                if (it.throwable != null) {
-                    it.throwable.printStackTrace()
+            .subscribe({ responseToGetEntireData ->
+                if (responseToGetEntireData.throwable != null) {
+                    responseToGetEntireData.throwable.printStackTrace()
                 } else {
-                    it.randomQuote?.let {
-                        _randomQuoteItem.value = it
-                    }
-                }
-            }, { it.printStackTrace() })
-            .addTo(compositeDisposable)
-
-        refreshing
-            .filter { it.isOnNext }
-            .map { it.value }
-            .map { it.second }
-            .subscribe({
-                if (it.throwable != null) {
-                    it.throwable.printStackTrace()
-                } else {
-                    it.catImageItem?.let {
-                        _randomCatImageItem.value = it
+                    responseToGetEntireData.entireDataResponseModel?.let {
+                        it.entireData.run {
+                            _randomQuoteItem.value = first.quote
+                            _randomCatImageItem.value = second.catImageUrl
+                        }
                     }
                 }
             }, { it.printStackTrace() })
@@ -95,13 +64,8 @@ class MainViewModel(
         refreshSubject.onNext(Unit)
     }
 
-    private data class ResponseToGetRandomQuote(
-        val randomQuote: QuoteItem? = null,
-        val throwable: Throwable? = null
-    )
-
-    private data class ResponseToGetRandomCatImage(
-        val catImageItem: CatImageItem? = null,
+    private data class ResponseToGetEntireData(
+        val entireDataResponseModel: EntireDataResponseModel? = null,
         val throwable: Throwable? = null
     )
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.cleanarchitecture.ui.main.MainViewModel" />
+            type="com.example.cleanarchitecture.presentationlayer.ui.main.MainViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -33,7 +33,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:setImage="@{viewModel.randomCatImageItem.imageUrl}" />
+                bind:setImage="@{viewModel.randomCatImageItem}" />
 
             <TextView
                 android:id="@+id/tv_quote"
@@ -47,7 +47,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_animal"
-                bind:fromHtml="@{viewModel.randomQuoteItem.quote}" />
+                bind:fromHtml="@{viewModel.randomQuoteItem}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
