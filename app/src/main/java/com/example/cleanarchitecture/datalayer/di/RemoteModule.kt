@@ -1,7 +1,5 @@
 package com.example.cleanarchitecture.datalayer.di
 
-import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
-import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGatewayImpl
 import com.example.cleanarchitecture.datalayer.remote.animal.CatImageApi
 import com.example.cleanarchitecture.datalayer.remote.animal.RemoteCatImageDataSource
 import com.example.cleanarchitecture.datalayer.remote.animal.RemoteCatImageDataSourceImpl
@@ -69,15 +67,6 @@ val remoteModule = module {
     // For RemoteCatImageDataSource instance
     single<RemoteCatImageDataSource> {
         RemoteCatImageDataSourceImpl(
-            get()
-        )
-    }
-
-    // For CatImageRepository instance
-    single<CatImageGateway> {
-        CatImageGatewayImpl(
-            get(),
-            get(),
             get()
         )
     }
