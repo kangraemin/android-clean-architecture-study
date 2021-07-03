@@ -1,0 +1,3 @@
+package com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.base
+
+interface GetDataResponseModel

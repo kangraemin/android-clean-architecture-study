@@ -4,6 +4,6 @@ import com.example.cleanarchitecture.domainlayer.requestmodel.EntireDataRequestM
 import com.example.cleanarchitecture.domainlayer.responsemodel.EntireDataResponseModel
 import io.reactivex.Single
 
-interface EntireDataUseCaseInteractor {
+interface UserUseCaseInteractor {
     fun getEntireData(entireDataRequestModel: EntireDataRequestModel): Single<EntireDataResponseModel>
 }

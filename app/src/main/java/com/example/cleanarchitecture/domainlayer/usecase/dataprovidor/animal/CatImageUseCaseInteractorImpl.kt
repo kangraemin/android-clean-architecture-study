@@ -1,10 +1,10 @@
-package com.example.cleanarchitecture.domainlayer.usecase.animal
+package com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.animal
 
 import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
-import com.example.cleanarchitecture.domainlayer.base.GetDataInteractor
-import com.example.cleanarchitecture.domainlayer.mapper.AnimalMapper.entityToResponseModel
-import com.example.cleanarchitecture.domainlayer.requestmodel.CatImageRequestModel
-import com.example.cleanarchitecture.domainlayer.responsemodel.CatImageResponseModel
+import com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.base.GetDataInteractor
+import com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.mapper.AnimalMapper.entityToResponseModel
+import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
+import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.CatImageResponseModel
 import io.reactivex.Single
 
 class CatImageUseCaseInteractorImpl(

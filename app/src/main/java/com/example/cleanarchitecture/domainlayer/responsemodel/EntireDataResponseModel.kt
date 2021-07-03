@@ -1,3 +1,6 @@
 package com.example.cleanarchitecture.domainlayer.responsemodel
 
+import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.CatImageResponseModel
+import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.QuoteResponseModel
+
 data class EntireDataResponseModel(val entireData: Pair<QuoteResponseModel, CatImageResponseModel>)

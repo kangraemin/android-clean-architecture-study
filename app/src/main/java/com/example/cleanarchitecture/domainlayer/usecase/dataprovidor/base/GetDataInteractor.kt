@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.domainlayer.base
+package com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.base
 
 import io.reactivex.Single
 

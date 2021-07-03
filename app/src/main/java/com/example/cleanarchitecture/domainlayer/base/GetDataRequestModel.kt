@@ -1,3 +1,0 @@
-package com.example.cleanarchitecture.domainlayer.base
-
-interface GetDataRequestModel

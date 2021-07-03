@@ -1,19 +1,19 @@
 package com.example.cleanarchitecture.domainlayer.usecase.user
 
-import com.example.cleanarchitecture.domainlayer.base.GetDataInteractor
-import com.example.cleanarchitecture.domainlayer.requestmodel.CatImageRequestModel
+import com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.base.GetDataInteractor
+import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
 import com.example.cleanarchitecture.domainlayer.requestmodel.EntireDataRequestModel
-import com.example.cleanarchitecture.domainlayer.requestmodel.QuoteRequestModel
-import com.example.cleanarchitecture.domainlayer.responsemodel.CatImageResponseModel
+import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.QuoteRequestModel
+import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.CatImageResponseModel
 import com.example.cleanarchitecture.domainlayer.responsemodel.EntireDataResponseModel
-import com.example.cleanarchitecture.domainlayer.responsemodel.QuoteResponseModel
+import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.QuoteResponseModel
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 
-class EntireDataUseCaseInteractorImpl(
+class UserUseCaseInteractorImpl(
     private val catImageInteractor: GetDataInteractor<CatImageRequestModel, CatImageResponseModel>,
     private val quoteInteractor: GetDataInteractor<QuoteRequestModel, QuoteResponseModel>
-) : EntireDataUseCaseInteractor {
+) : UserUseCaseInteractor {
 
     override fun getEntireData(entireDataRequestModel: EntireDataRequestModel): Single<EntireDataResponseModel> {
         return Single
