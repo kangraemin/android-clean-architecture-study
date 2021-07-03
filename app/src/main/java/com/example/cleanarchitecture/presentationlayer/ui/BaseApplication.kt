@@ -1,9 +1,9 @@
 package com.example.cleanarchitecture.presentationlayer.ui
 
 import android.app.Application
-import com.example.cleanarchitecture.datalayer.di.localModule
-import com.example.cleanarchitecture.datalayer.di.remoteModule
-import com.example.cleanarchitecture.datalayer.di.repositoryModule
+import com.example.datalayer.di.localModule
+import com.example.datalayer.di.remoteModule
+import com.example.datalayer.di.repositoryModule
 import com.example.cleanarchitecture.domainlayer.di.useCaseModule
 import com.example.cleanarchitecture.presentationlayer.di.utilModule
 import com.example.cleanarchitecture.presentationlayer.di.viewModule

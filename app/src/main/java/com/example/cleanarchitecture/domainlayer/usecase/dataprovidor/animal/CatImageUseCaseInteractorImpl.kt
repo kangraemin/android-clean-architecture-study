@@ -1,6 +1,6 @@
 package com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.animal
 
-import com.example.cleanarchitecture.datalayer.datagateway.animal.CatImageGateway
+import com.example.datalayer.datagateway.animal.CatImageGateway
 import com.example.cleanarchitecture.domainlayer.requestmodel.dataprovidor.CatImageRequestModel
 import com.example.cleanarchitecture.domainlayer.responsemodel.dataprovidor.CatImageResponseModel
 import com.example.cleanarchitecture.domainlayer.usecase.dataprovidor.mapper.AnimalMapper.entityToResponseModel
