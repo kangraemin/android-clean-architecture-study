@@ -1,6 +1,6 @@
 package com.example.datalayer.datagateway.quote
 
-import com.example.datalayer.entity.QuoteItem
+import com.example.datalayer.entity.QuoteEntity
 import com.example.datalayer.exception.TooManyRequest
 import com.example.datalayer.local.quote.LocalQuoteDataSource
 import com.example.datalayer.remote.quote.RemoteQuoteDataSource
@@ -12,7 +12,7 @@ class QuoteGatewayImpl(
     private val remoteQuoteDataSource: RemoteQuoteDataSource,
     private val networkUtil: NetworkUtil
 ) : QuoteGateway {
-    override fun getRandomQuote(): Single<QuoteItem> {
+    override fun getRandomQuote(): Single<QuoteEntity> {
         return Single
             .defer {
                 if (!networkUtil.isNetworkConnected()) {

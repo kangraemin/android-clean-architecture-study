@@ -1,6 +1,6 @@
 package com.example.datalayer.local.quote
 
-import com.example.datalayer.entity.QuoteItem
+import com.example.datalayer.entity.QuoteEntity
 import com.example.datalayer.local.quote.LocalQuoteMapper.localQuoteItemToQuoteItem
 import com.example.datalayer.local.quote.LocalQuoteMapper.quoteItemToLocalQuoteItem
 import io.reactivex.Completable
@@ -10,16 +10,16 @@ import io.reactivex.schedulers.Schedulers
 class LocalQuoteDataSourceImpl(
     private val localQuoteItemDao: LocalQuoteItemDao
 ) : LocalQuoteDataSource {
-    override fun getQuote(): Single<QuoteItem> {
+    override fun getQuote(): Single<QuoteEntity> {
         return localQuoteItemDao
             .getQuote()
             .subscribeOn(Schedulers.io())
             .map { localQuoteItemToQuoteItem(it) }
     }
 
-    override fun insertQuote(quoteItem: QuoteItem): Completable {
+    override fun insertQuote(quoteEntity: QuoteEntity): Completable {
         return localQuoteItemDao
-            .insertQuote( quoteItemToLocalQuoteItem(quoteItem) )
+            .insertQuote( quoteItemToLocalQuoteItem(quoteEntity) )
             .subscribeOn(Schedulers.io())
     }
 

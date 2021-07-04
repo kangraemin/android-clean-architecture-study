@@ -1,8 +1,8 @@
 package com.example.datalayer.remote.quote
 
-import com.example.datalayer.entity.QuoteItem
+import com.example.datalayer.entity.QuoteEntity
 import io.reactivex.Single
 
 interface RemoteQuoteDataSource {
-    fun getRandomQuote(): Single<QuoteItem>
+    fun getRandomQuote(): Single<QuoteEntity>
 }

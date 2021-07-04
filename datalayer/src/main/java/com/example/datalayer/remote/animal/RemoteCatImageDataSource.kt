@@ -1,8 +1,8 @@
 package com.example.datalayer.remote.animal
 
-import com.example.datalayer.entity.CatImageItem
+import com.example.datalayer.entity.CatImageEntity
 import io.reactivex.Single
 
 interface RemoteCatImageDataSource {
-    fun getRandomCatImage(): Single<CatImageItem>
+    fun getRandomCatImage(): Single<CatImageEntity>
 }

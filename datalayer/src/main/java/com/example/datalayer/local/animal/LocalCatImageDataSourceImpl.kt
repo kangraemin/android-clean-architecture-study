@@ -1,6 +1,6 @@
 package com.example.datalayer.local.animal
 
-import com.example.datalayer.entity.CatImageItem
+import com.example.datalayer.entity.CatImageEntity
 import com.example.datalayer.local.animal.LocalCatImageItemMapper.catImageItemToLocalCatImageItem
 import com.example.datalayer.local.animal.LocalCatImageItemMapper.localCatImageItemToCatImageItem
 import io.reactivex.Completable
@@ -10,16 +10,16 @@ import io.reactivex.schedulers.Schedulers
 class LocalCatImageDataSourceImpl(
     private val localCatImageDao: LocalCatImageDao
 ) : LocalCatImageDataSource {
-    override fun getCatImage(): Single<CatImageItem> {
+    override fun getCatImage(): Single<CatImageEntity> {
         return localCatImageDao
             .getCatImage()
             .subscribeOn(Schedulers.io())
             .map { localCatImageItemToCatImageItem(it) }
     }
 
-    override fun insertCatImage(catImageItem: CatImageItem): Completable {
+    override fun insertCatImage(catImageEntity: CatImageEntity): Completable {
         return localCatImageDao
-            .insertCatImage(localCatImageItem = catImageItemToLocalCatImageItem(catImageItem))
+            .insertCatImage(localCatImageItem = catImageItemToLocalCatImageItem(catImageEntity))
             .subscribeOn(Schedulers.io())
     }
 

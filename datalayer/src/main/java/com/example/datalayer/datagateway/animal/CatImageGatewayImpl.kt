@@ -1,6 +1,6 @@
 package com.example.datalayer.datagateway.animal
 
-import com.example.datalayer.entity.CatImageItem
+import com.example.datalayer.entity.CatImageEntity
 import com.example.datalayer.local.animal.LocalCatImageDataSource
 import com.example.datalayer.remote.animal.RemoteCatImageDataSource
 import com.example.datalayer.util.NetworkUtil
@@ -11,7 +11,7 @@ class CatImageGatewayImpl (
     private val remoteCatImageDataSource: RemoteCatImageDataSource,
     private val networkUtil: NetworkUtil
 ) : CatImageGateway {
-    override fun getRandomCatImage(): Single<CatImageItem> {
+    override fun getRandomCatImage(): Single<CatImageEntity> {
         return Single
             .defer {
                 if (!networkUtil.isNetworkConnected()) {
