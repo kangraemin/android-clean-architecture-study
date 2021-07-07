@@ -1,2 +1,4 @@
-include ':app'
+include ':domainlayer'
+include ':presentationlayer'
+include ':datalayer'
 rootProject.name = "CleanArchitecture"
